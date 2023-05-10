@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.StudentGrade">
+    <children>
+        <ListView fx:id="gradesList" layoutX="109.0" layoutY="41.0" prefHeight="226.0" prefWidth="282.0" />
+        <Button layoutX="14.0" layoutY="449.0" mnemonicParsing="false" onAction="#backToAll" text="back to all students" />
+        <Button layoutX="303.0" layoutY="319.0" mnemonicParsing="false" onAction="#updateGrade" prefHeight="44.0" prefWidth="88.0" text="update grade" />
+        <TextField fx:id="newGrade" layoutX="109.0" layoutY="319.0" prefHeight="44.0" prefWidth="150.0" text="new Grade" />
+    </children>
+</AnchorPane>
