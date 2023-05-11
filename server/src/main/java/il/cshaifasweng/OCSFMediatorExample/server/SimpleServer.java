@@ -47,10 +47,10 @@ public class SimpleServer extends AbstractServer {
 		Student student3 = new Student("Mustafa","Jabareen","654213978", "15/02/2005" ,male,75,92,89);
 		session.save(student3);
 		session.flush();
-		Student student4 = new Student("Alex","David","555320747", "23/02/2008" ,female,75,86,91);
+		Student student4 = new Student("Adam","Rayan","223163544", "19/03/2006" ,male,75,86,91);
 		session.save(student4);
 		session.flush();
-		Student student5 = new Student("Shir","Sana","621354155", "30/02/2007" ,female,84,82,91);
+		Student student5 = new Student("mohamed","Jabreen","621354155", "30/02/2007" ,male,84,82,91);
 		session.save(student5);
 		session.flush();
 		Student student6 = new Student("Yam","Yakov","621354122", "06/09/2006" ,female,65,100,98);
@@ -68,8 +68,10 @@ public class SimpleServer extends AbstractServer {
 		Student student10 = new Student("Michal","Feldman","332658442", "23/08/2009" ,female,90,95,100);
 		session.save(student10);
 		session.flush();
-		Student student11 = new Student("Adam","Rayan","223163544", "19/03/2006" ,male,98,100,81);
+		Student student11 = new Student("Lionel","Messi","99999999", "24/06/1987" ,male,100,100,100);
 		session.save(student11);
+		Student student12 = new Student("Cristiano","Ronaldo","00000000", "5/02/1985" ,male,0,0,0);
+		session.save(student12);
 		session.flush();
 
 	}
@@ -85,7 +87,6 @@ public class SimpleServer extends AbstractServer {
 
 	private static SessionFactory getSessionFactory() throws HibernateException {
 		Configuration configuration = new Configuration();
-		// Add ALL of your entities here. You can also try adding a whole package.
 		configuration.addAnnotatedClass(Student.class);
 
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
@@ -99,48 +100,49 @@ public class SimpleServer extends AbstractServer {
 		SessionFactory sessionFactory = getSessionFactory();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		generateStudents();
+		generateStudents();  // moving the students to the database
 		session.getTransaction().commit();
 	}
-	private  void UpdateGrade(Student st,int newGrade,int Gradenum)
+	private  void UpdateGrade(Student student,int newGrade,int gradeNum)
 	{
 		session.beginTransaction();
-		switch (Gradenum)
+		switch (gradeNum) // checking which grade we need to update (the first or the second of the third)
 		{
-			case 0:
-				st.setFirstGrade(newGrade);
+			case 0: // if the first
+				student.setFirstGrade(newGrade);
 				break;
-			case 1:
-				st.setSecondGrade(newGrade);
+			case 1:// if the second
+				student.setSecondGrade(newGrade);
 				break;
-			case 2:
-				st.setThirdGrade(newGrade);
+			case 2:// if the third
+				student.setThirdGrade(newGrade);
 		}
-		session.update(st);
+		session.update(student);
 		session.getTransaction().commit();
 	}
 
 
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		String msgString = msg.toString();
-		if (msg.getClass().equals(MsgClass.class)) {
-			MsgClass myMsg = (MsgClass) msg;
-			String msgtext=myMsg.getMsg();
+		if (msg.getClass().equals(MsgClass.class)) { // checking if the msg class is MsgClass
+			MsgClass msgFromClient = (MsgClass) msg;
+			String msgContent=msgFromClient.getMsg(); // getting the content of the msg
 			try {
-				if (msgtext.equals("#get all students")) {
+				if (msgContent.equals("#get all students")) { // checking if we need to return all students
 					try {
-						MsgClass myMSg = new MsgClass("all students",getAllStudents());
-						client.sendToClient(myMSg);
+						/*Creating a msg to the clint which contain all students int the database*/
+						MsgClass msgToClient = new MsgClass("all students",getAllStudents());
+						client.sendToClient(msgToClient);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
 				}
-				if(msgtext.equals("#update"))
+				if(msgContent.equals("#update"))// checking if we need to update a certain student grade
 				{
 					try {
-						Student st=(Student)(myMsg.getObj());
-						UpdateGrade(session.get(Student.class,st.getId()),myMsg.getNewGrade(),myMsg.getGradeNum());
+						Student student=(Student)(msgFromClient.getObj()); //getting the student from the msg sent
+						/*updating the student with the new grade for the grade number*/
+						UpdateGrade(session.get(Student.class,student.getId()),msgFromClient.getNewGrade(),msgFromClient.getGradeNum());
 						MsgClass clientMsg=new MsgClass("#updated");
 						client.sendToClient(clientMsg);
 					} catch (Exception e) {
@@ -151,10 +153,6 @@ public class SimpleServer extends AbstractServer {
 				System.out.println(e.getMessage());
 			}
 		}
-		if (msgString.startsWith("#close")) {
-			session.close();
-		}
-
 	}
 
 

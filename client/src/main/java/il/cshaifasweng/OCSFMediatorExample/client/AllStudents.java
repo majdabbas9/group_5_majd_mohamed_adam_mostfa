@@ -57,8 +57,8 @@ public class AllStudents implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Student> students=(List<Student>) Data.S;
+    public void initialize(URL url, ResourceBundle resourceBundle) { // when opening the window
+        List<Student> students=(List<Student>) Data.students;
         ObservableList<Student> observableList = FXCollections.observableArrayList();
         Student st =new Student();
         for (Student s: students){
@@ -76,14 +76,28 @@ public class AllStudents implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 int index=tableView.getSelectionModel().getSelectedIndex();
-                if(index==-1)
+                if(index==-1) // if nothing selected
                 {
                     studentName.setText("");
                 }
-                else {
-                    Student s =(Student) tableView.getSelectionModel().getSelectedItem();
-                    Data.selectedStudent=s;
-                    studentName.setText(s.getFirstName()+" "+s.getSecondName());
+                else { // if something is selected
+                    Student s = (Student) tableView.getSelectionModel().getSelectedItem(); // getting the selected student
+                    Data.selectedStudent = s; //changing the selected student
+                    if (s.getFirstName().equals("Lionel")) { // this is not part of the main code just a meme
+                        studentName.setText("THE GOAT");
+                    }
+                    else {
+                        if(s.getFirstName().equals("Cristiano"))// this is not part of the code just a meme
+                        {
+                            studentName.setText("THE FINISHED");
+                        }
+                        else
+                        {
+                            // this is part of the code
+                            studentName.setText(s.getFirstName() + " " + s.getSecondName()); // showing the student first and last name
+                        }
+
+                    }
                 }
             }
         });

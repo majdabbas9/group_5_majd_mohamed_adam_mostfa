@@ -47,6 +47,8 @@ public class StudentGrade implements Initializable {
     private Text studentName; // Value injected by FXMLLoader
 
     @FXML
+    private Text warining;
+    @FXML
     void backToAll(ActionEvent event) throws IOException {
         MsgClass msg = new MsgClass("#get all students", null);
         SimpleClient.getClient().sendToServer(msg);
@@ -60,11 +62,13 @@ public class StudentGrade implements Initializable {
             try {
                 num = Integer.valueOf(newGrade.getText());
             } catch (Exception ex) {
-                newGrade.setText("please Enter a valid number !");
+                warining.setText("please Enter a valid number !");
+                newGrade.setText("");
                 return;
             }
             if (num < 0) {
-                newGrade.setText("please Enter a non negative number !");
+                warining.setText("please Enter a non negative number !");
+                newGrade.setText("");
                 return;
             }
             String msgString = "#update";
@@ -80,7 +84,8 @@ public class StudentGrade implements Initializable {
             }
 
         } else {
-            newGrade.setText("pick a grade plaese!");
+            warining.setText("pick a grade plaese!");
+            newGrade.setText("");
         }
 
     }

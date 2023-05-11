@@ -20,5 +20,6 @@
       </TableView>
       <Text fx:id="studentName" layoutX="72.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name" />
       <Text fx:id="StudentID" layoutX="279.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" />
+      <Text fx:id="warining" fill="#ff0101" layoutX="70.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="362.81212615966797" />
     </children>
 </AnchorPane>

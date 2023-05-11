@@ -1,8 +1,8 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 
-public class GradeOfStudent {
-    private  int gradeNo;
-    private int grade;
+public class GradeOfStudent { // this class is used in the StudentGrade Window
+    private  int gradeNo; // grade number
+    private int grade; // the grade
     public GradeOfStudent(int gradeNo,int grade)
     {
         this.gradeNo=gradeNo;

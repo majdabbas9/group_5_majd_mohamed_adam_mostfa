@@ -14,8 +14,8 @@ public class First {
 
     @FXML
     void showAllStudents(ActionEvent event) throws IOException {
-        MsgClass msg = new MsgClass("#get all students", null);
-        SimpleClient.getClient().sendToServer(msg);
+        MsgClass msg = new MsgClass("#get all students", null); // creaing a msg to the server demanding the students
+        SimpleClient.getClient().sendToServer(msg); // sending the msg to the sevrer
     }
 
 }

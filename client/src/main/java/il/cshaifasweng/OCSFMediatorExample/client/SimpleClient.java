@@ -14,7 +14,6 @@ import java.util.List;
 public class SimpleClient extends AbstractClient {
 
 	private static SimpleClient client = null;
-	public static  Object data;
 
 	private SimpleClient(String host, int port) {
 		super(host, port);
@@ -27,10 +26,11 @@ public class SimpleClient extends AbstractClient {
 			//EventBus.getDefault().post(new WarningEvent((Warning) msg));
 		}
 		if(msg.getClass().equals(MsgClass.class)) {
-			MsgClass myMsg = (MsgClass) msg;
-			if(myMsg.getMsg().equals("all students")) {
+			MsgClass msgFromServer = (MsgClass) msg;
+			if(msgFromServer.getMsg().equals("all students")) { /* checking if need to pass the students to the Data class
+			and the moving to the AllStudents window*/
 				try {
-					Data.S=myMsg.getObj();
+					Data.students=msgFromServer.getObj();
 				} catch (Exception ex) {
 					System.out.println(ex.getMessage());
 				}
