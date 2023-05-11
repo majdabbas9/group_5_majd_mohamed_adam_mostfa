@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,8 @@ public class App extends Application {
     	EventBus.getDefault().register(this);
     	client = SimpleClient.getClient();
     	client.openConnection();
+        MsgClass msg = new MsgClass("#get all students", null);
+        SimpleClient.getClient().sendToServer(msg);
         scene = new Scene(loadFXML("First"), 500, 500);
         stage.setScene(scene);
         stage.show();

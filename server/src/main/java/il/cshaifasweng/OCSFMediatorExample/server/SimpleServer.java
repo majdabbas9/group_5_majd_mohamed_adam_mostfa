@@ -1,5 +1,7 @@
 package il.cshaifasweng.OCSFMediatorExample.server;
 
+import com.mysql.cj.xdevapi.Client;
+import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import il.cshaifasweng.OCSFMediatorExample.entities.Student;
 import il.cshaifasweng.OCSFMediatorExample.entities.Warning;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.AbstractServer;
@@ -18,7 +20,7 @@ import java.util.List;
 
 import static il.cshaifasweng.OCSFMediatorExample.entities.Gender.female;
 import static il.cshaifasweng.OCSFMediatorExample.entities.Gender.male;
-
+import  il.cshaifasweng.OCSFMediatorExample.entities.Data;
 public class SimpleServer extends AbstractServer {
 
 
@@ -105,14 +107,33 @@ public class SimpleServer extends AbstractServer {
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 		String msgString = msg.toString();
-		if (msgString.startsWith("#warning")) {
-			Warning warning = new Warning("Warning from server!");
+		if (msg.getClass().equals(MsgClass.class)) {
+			MsgClass myMsg = (MsgClass) msg;
+			String msgtext=myMsg.getMsg();
 			try {
-				client.sendToClient(warning);
-				System.out.format("Sent warning to client %s\n", client.getInetAddress().getHostAddress());
-			} catch (IOException e) {
-				e.printStackTrace();
+				/*if (msgtext.startsWith("#warning")) {
+					Warning warning = new Warning("Warning from server!");
+					try {
+						client.sendToClient(warning);
+						System.out.format("Sent warning to client %s\n", client.getInetAddress().getHostAddress());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}*/
+				if (msgtext.equals("#get all students")) {
+					try {
+						MsgClass myMSg = new MsgClass("all students",getAllStudents());
+						client.sendToClient(myMSg);
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
+		}
+		if (msgString.startsWith("#close")) {
+			session.close();
 		}
 
 	}

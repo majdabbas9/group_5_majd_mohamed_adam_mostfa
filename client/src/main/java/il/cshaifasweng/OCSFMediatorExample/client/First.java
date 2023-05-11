@@ -4,6 +4,7 @@
 
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -13,7 +14,7 @@ public class First {
 
     @FXML
     void showAllStudents(ActionEvent event) throws IOException {
-        App.setRoot("allStudents");
+        App.setRoot("AllStudents");
     }
 
 }

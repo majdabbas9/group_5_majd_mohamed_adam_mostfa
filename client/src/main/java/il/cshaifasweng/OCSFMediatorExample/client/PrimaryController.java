@@ -10,7 +10,7 @@ public class PrimaryController {
     @FXML
     void sendWarning(ActionEvent event) {
     	try {
-			SimpleClient.getClient().sendToServer("#warning");
+			SimpleClient.getClient().sendToServer("#all");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
