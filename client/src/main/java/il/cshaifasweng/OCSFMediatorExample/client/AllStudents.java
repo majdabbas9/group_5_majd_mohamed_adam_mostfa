@@ -60,7 +60,6 @@ public class AllStudents implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) { // when opening the window
         List<Student> students=(List<Student>) Data.students;
         ObservableList<Student> observableList = FXCollections.observableArrayList();
-        Student st =new Student();
         for (Student s: students){
             //observableList.add(new Student(s.getId(),s.getFirstName(),s.getSecondName(),s.getIdNum()));
             observableList.add(s);
