@@ -102,6 +102,23 @@ public class SimpleServer extends AbstractServer {
 		generateStudents();
 		session.getTransaction().commit();
 	}
+	private  void UpdateGrade(Student st,int newGrade,int Gradenum)
+	{
+		session.beginTransaction();
+		switch (Gradenum)
+		{
+			case 0:
+				st.setFirstGrade(newGrade);
+				break;
+			case 1:
+				st.setSecondGrade(newGrade);
+				break;
+			case 2:
+				st.setThirdGrade(newGrade);
+		}
+		session.update(st);
+		session.getTransaction().commit();
+	}
 
 
 	@Override
@@ -111,19 +128,21 @@ public class SimpleServer extends AbstractServer {
 			MsgClass myMsg = (MsgClass) msg;
 			String msgtext=myMsg.getMsg();
 			try {
-				/*if (msgtext.startsWith("#warning")) {
-					Warning warning = new Warning("Warning from server!");
-					try {
-						client.sendToClient(warning);
-						System.out.format("Sent warning to client %s\n", client.getInetAddress().getHostAddress());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}*/
 				if (msgtext.equals("#get all students")) {
 					try {
 						MsgClass myMSg = new MsgClass("all students",getAllStudents());
 						client.sendToClient(myMSg);
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
+				if(msgtext.equals("#update"))
+				{
+					try {
+						Student st=(Student)(myMsg.getObj());
+						UpdateGrade(session.get(Student.class,st.getId()),myMsg.getNewGrade(),myMsg.getGradeNum());
+						MsgClass clientMsg=new MsgClass("#updated");
+						client.sendToClient(clientMsg);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}

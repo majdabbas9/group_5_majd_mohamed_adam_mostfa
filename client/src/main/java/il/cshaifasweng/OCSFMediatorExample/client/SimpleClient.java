@@ -26,23 +26,32 @@ public class SimpleClient extends AbstractClient {
 			Warning w=(Warning)msg;
 			//EventBus.getDefault().post(new WarningEvent((Warning) msg));
 		}
-		if(msg.getClass().equals(MsgClass.class))
-		{
+		if(msg.getClass().equals(MsgClass.class)) {
 			MsgClass myMsg = (MsgClass) msg;
-			if(myMsg.getMsg().equals("all students"))
-			{
-				Data.S=myMsg.getObj();
+			if(myMsg.getMsg().equals("all students")) {
+				try {
+					Data.S=myMsg.getObj();
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
 
+				try {
+					App.setRoot("AllStudents");
+				}
+				catch (IOException ex)
+				{
+					System.out.println(ex.getMessage());
+				}
+				}
 			}
+
 		}
 
-	}
-	
-	public static SimpleClient getClient() {
-		if (client == null) {
-			client = new SimpleClient("localhost", 3004);
+		public static SimpleClient getClient() {
+			if (client == null) {
+				client = new SimpleClient("localhost", 3004);
+			}
+			return client;
 		}
-		return client;
-	}
 
 }

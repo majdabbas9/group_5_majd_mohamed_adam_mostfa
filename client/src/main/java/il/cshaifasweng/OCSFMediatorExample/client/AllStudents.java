@@ -62,7 +62,8 @@ public class AllStudents implements Initializable {
         ObservableList<Student> observableList = FXCollections.observableArrayList();
         Student st =new Student();
         for (Student s: students){
-            observableList.add(new Student(s.getId(),s.getFirstName(),s.getSecondName(),s.getIdNum()));
+            //observableList.add(new Student(s.getId(),s.getFirstName(),s.getSecondName(),s.getIdNum()));
+            observableList.add(s);
         }
 
         studentNo.setCellValueFactory(new PropertyValueFactory<Student,Integer>("id"));
@@ -82,6 +83,7 @@ public class AllStudents implements Initializable {
                 else {
                     Student s =(Student) tableView.getSelectionModel().getSelectedItem();
                     System.out.println(s.getId());
+                    Data.selectedStudent=s;
                     studentName.setText(s.getFirstName()+" "+s.getSecondName());
                 }
             }

@@ -14,7 +14,8 @@ public class First {
 
     @FXML
     void showAllStudents(ActionEvent event) throws IOException {
-        App.setRoot("AllStudents");
+        MsgClass msg = new MsgClass("#get all students", null);
+        SimpleClient.getClient().sendToServer(msg);
     }
 
 }

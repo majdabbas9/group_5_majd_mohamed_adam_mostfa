@@ -8,10 +8,13 @@ public class MsgClass implements Serializable {
     private String msg;
     private Object obj;
 
+    private int gradeNum;
+    private int NewGrade;
     public String getMsg() {
         return msg;
     }
-
+    public int getGradeNum(){return  gradeNum;}
+    public int getNewGrade(){return  NewGrade;}
     public void setMsg(String msg) {
         this.msg = msg;
     }
@@ -30,10 +33,20 @@ public class MsgClass implements Serializable {
     public MsgClass(String msg) {
         this.msg = msg;
         this.obj=null;
+        this.gradeNum=0;
+        this.NewGrade=0;
+    }
+    public MsgClass(String msg,Object obj,int gradeNum,int newGrade) {
+        this.msg = msg;
+        this.obj=obj;
+        this.gradeNum=gradeNum;
+        this.NewGrade=newGrade;
     }
 
     public MsgClass(String msg, Object obj) {
         this.msg = msg;
         this.obj = obj;
+        this.gradeNum=0;
+        this.NewGrade=0;
     }
 }

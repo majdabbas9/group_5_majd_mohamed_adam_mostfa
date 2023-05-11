@@ -12,13 +12,13 @@
         <Button layoutX="14.0" layoutY="449.0" mnemonicParsing="false" onAction="#backToAll" text="back to all students" />
         <Button layoutX="310.0" layoutY="239.0" mnemonicParsing="false" onAction="#updateGrade" prefHeight="44.0" prefWidth="88.0" text="update grade" />
         <TextField fx:id="newGrade" layoutX="279.0" layoutY="165.0" prefHeight="44.0" prefWidth="150.0" text="new Grade" />
-      <TableView layoutX="72.0" layoutY="100.0" prefHeight="273.0" prefWidth="167.0">
+      <TableView fx:id="gradeTable" layoutX="72.0" layoutY="100.0" prefHeight="273.0" prefWidth="167.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Grade No." />
-          <TableColumn prefWidth="89.5999755859375" text="Grade" />
+          <TableColumn fx:id="gradeNO" prefWidth="75.0" text="Grade No." />
+          <TableColumn fx:id="Grade" prefWidth="89.5999755859375" text="Grade" />
         </columns>
       </TableView>
-      <Text layoutX="72.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name" />
-      <Text layoutX="279.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" />
+      <Text fx:id="studentName" layoutX="72.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name" />
+      <Text fx:id="StudentID" layoutX="279.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" />
     </children>
 </AnchorPane>
