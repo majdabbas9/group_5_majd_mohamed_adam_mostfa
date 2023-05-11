@@ -82,7 +82,6 @@ public class AllStudents implements Initializable {
                 }
                 else {
                     Student s =(Student) tableView.getSelectionModel().getSelectedItem();
-                    System.out.println(s.getId());
                     Data.selectedStudent=s;
                     studentName.setText(s.getFirstName()+" "+s.getSecondName());
                 }
