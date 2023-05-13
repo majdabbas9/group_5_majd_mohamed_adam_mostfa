@@ -85,18 +85,16 @@ public class AllStudents implements Initializable {
                     if (s.getFirstName().equals("Lionel")) { // this is not part of the main code just a meme
                         studentName.setText("THE GOAT");
                     }
-                    else {
-                        if(s.getFirstName().equals("Cristiano"))// this is not part of the code just a meme
-                        {
-                            studentName.setText("THE FINISHED");
-                        }
-                        else
-                        {
-                            // this is part of the code
-                            studentName.setText(s.getFirstName() + " " + s.getSecondName()); // showing the student first and last name
-                        }
-
+                    else if(s.getFirstName().equals("Cristiano"))// this is not part of the code just a meme
+                    {
+                        studentName.setText("THE FINISHED");
                     }
+                    else
+                    {
+                        // this is part of the code
+                        studentName.setText(s.getFirstName() + " " + s.getSecondName()); // showing the student first and last name
+                    }
+
                 }
             }
         });

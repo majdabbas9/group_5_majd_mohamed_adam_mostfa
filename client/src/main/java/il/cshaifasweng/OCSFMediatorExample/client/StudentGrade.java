@@ -79,19 +79,20 @@ public class StudentGrade implements Initializable {
                 JOptionPane.showMessageDialog(null, "Grade Updated");
                 gradeTable.getItems().get(gradeTable.getSelectionModel().getSelectedIndex()).setGrade(num);
                 gradeTable.refresh();
+                warining.setText("");
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
 
         } else {
             warining.setText("pick a grade plaese!");
-            newGrade.setText("");
         }
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        newGrade.setDisable(true);
         Student st = Data.selectedStudent;
         studentName.setText(st.getFirstName()+" "+ st.getSecondName());
         StudentID.setText(st.getIdNum());
@@ -105,6 +106,8 @@ public class StudentGrade implements Initializable {
         gradeTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                warining.setText("");
+                newGrade.setDisable(false);
                 newGrade.setText(String.valueOf(gradeTable.getSelectionModel().getSelectedItem().getGrade()));
             }
         });

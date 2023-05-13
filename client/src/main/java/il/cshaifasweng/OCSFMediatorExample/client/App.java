@@ -1,6 +1,5 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
-import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.io.IOException;
 
 /**
  * JavaFX App
@@ -29,6 +27,7 @@ public class App extends Application {
     	client = SimpleClient.getClient(); // getting the client
     	client.openConnection(); // opening connection with the server
         scene = new Scene(loadFXML("First"), 500, 500);
+        stage.setTitle("High School Test System");
         stage.setScene(scene);
         stage.show();
     }
