@@ -2,10 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.First">
     <children>
         <Button layoutX="184.0" layoutY="237.0" mnemonicParsing="false" onAction="#showAllStudents" prefHeight="44.0" prefWidth="132.0" text="Show All Students" />
+      <Text layoutX="85.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To High School Test System" textAlignment="CENTER" wrappingWidth="329.5628128051758">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
