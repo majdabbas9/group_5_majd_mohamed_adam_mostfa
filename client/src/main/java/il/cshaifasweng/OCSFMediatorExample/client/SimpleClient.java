@@ -36,7 +36,7 @@ public class SimpleClient extends AbstractClient {
 				}
 
 				try {
-					App.setRoot("AllStudents");
+					App.setRoot("AllStudents"); // App.setRoot("AllStudents");
 				}
 				catch (IOException ex)
 				{
@@ -49,7 +49,7 @@ public class SimpleClient extends AbstractClient {
 
 		public static SimpleClient getClient() {
 			if (client == null) {
-				client = new SimpleClient("localhost", 3004);
+				client = new SimpleClient("localhost", 3020);
 			}
 			return client;
 		}

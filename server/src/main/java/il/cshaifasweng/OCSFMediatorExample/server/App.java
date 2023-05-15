@@ -12,7 +12,7 @@ public class App
 	private static SimpleServer server;
     public static void main( String[] args ) throws IOException
     {
-        server = new SimpleServer(3004);
+        server = new SimpleServer(3020);
         server.listen();
     }
 }
